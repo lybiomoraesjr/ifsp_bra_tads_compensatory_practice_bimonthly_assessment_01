@@ -1,0 +1,13 @@
+type Task {
+  id: ID!
+  title: String!
+  description: String
+  done: Boolean!
+  createdAt: String
+  dueDate: String
+}
+
+type Query {
+  getAllTasks: [Task]
+  getTaskById(id: ID!): Task
+}
