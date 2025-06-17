@@ -3,11 +3,39 @@ type Task {
   title: String!
   description: String
   done: Boolean!
+  category: String
+  tags: [String]
   createdAt: String
   dueDate: String
+  location: Location
+}
+
+type Location {
+  id: ID!
+  name: String!
+  address: String
+  latitude: Float
+  longitude: Float
+}
+
+input TaskInput {
+  title: String!
+  description: String
+  category: String
+  tags: [String]
+  dueDate: String
+  locationId: ID
 }
 
 type Query {
   getAllTasks: [Task]
   getTaskById(id: ID!): Task
+  getTasksByUserId(userId: ID!): [Task]
+}
+
+type Mutation {
+  createTask(taskInput: TaskInput!): Task
+  updateTask(id: ID!, taskInput: TaskInput!): Task
+  deleteTask(id: ID!): Task
+  toggleTaskStatus(id: ID!): Task
 }
